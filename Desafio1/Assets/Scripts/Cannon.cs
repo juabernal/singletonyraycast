@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     public GameObject munition;
-    public bool canShoot = true;
+    private bool canShoot = false;
 
     public float delaySpawn = 5f;
     public float repeatSpawn = 2f;
@@ -29,7 +29,7 @@ public class Cannon : MonoBehaviour
         
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         if (canShoot)
         {
@@ -45,7 +45,7 @@ public class Cannon : MonoBehaviour
         }
     }
 
-    private void ResetShoot()
+    public void ResetShoot()
     {
         canShoot = true;
     }
@@ -55,5 +55,9 @@ public class Cannon : MonoBehaviour
         dañoAcumulado = dañoPorBola + dañoAcumulado;
      }
 
+    public void DesactivarCannon()
+    {
+        canShoot = false;
+    }
     
 }

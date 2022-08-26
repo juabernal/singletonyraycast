@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rayast : MonoBehaviour
+public class Raycast2Desactiva : MonoBehaviour
 {
     // Si toca este Raycast activa el disparo del cañon.
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private Transform endPoint;
+    [SerializeField] private Transform shootPoint2;
+    [SerializeField] private Transform endPoint2;
 
-    
+
     //Lectura de Script Cañon para traer la variable canShoot y Activar/desactivar
     Cannon canShootr;
 
-    [SerializeField] private float rayDistance = 10;
-
+    [SerializeField] private float rayDistance2 = 10;
+    // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
 
@@ -29,27 +29,25 @@ public class Rayast : MonoBehaviour
     private void CannonRaycast()
     {
         RaycastHit hit;
-        if (Physics.Raycast(shootPoint.position, endPoint.localPosition, out hit, rayDistance))
+        if (Physics.Raycast(shootPoint2.position, endPoint2.localPosition, out hit, rayDistance2))
         {
             if (hit.transform.CompareTag("Player"))
             {
 
                 canShootr = GameObject.FindGameObjectWithTag("cannon").GetComponent<Cannon>();
-                canShootr.ResetShoot();
+                canShootr.DesactivarCannon();
 
-                Debug.Log("Colisión con Player");
+                Debug.Log("Desactivado");
             }
 
         }
 
-        
+
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(shootPoint.position, endPoint.position);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(shootPoint2.position, endPoint2.position);
     }
-
 }
-
